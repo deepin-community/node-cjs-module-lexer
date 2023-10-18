@@ -1,0 +1,6 @@
+version=4
+opts=\
+repacksuffix=+dfsg,\
+dversionmangle=auto,\
+filenamemangle=s/.+\/v?(\d\S+)@ARCHIVE_EXT@/cjs-module-lexer-$1\.tar\.gz/ \
+ https://github.com/nodejs/cjs-module-lexer/tags .*/v?(\d\S+)\.tar\.gz

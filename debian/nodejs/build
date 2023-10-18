@@ -1,0 +1,14 @@
+mkdir -p lib
+
+clang -nodefaultlibs --sysroot=/usr -target wasm32-unknown-wasi -Ofast \
+	-fno-exceptions -fvisibility=hidden -mexec-model=reactor -Wl,-lc \
+	-Wl,-error-limit=0 -Wl,-O3 -Wl,--lto-O3 -Wl,--strip-all -Wl,--allow-undefined \
+	-Wl,--export-dynamic -Wno-logical-op-parentheses -Wno-parentheses \
+	-Wl,-z,stack-size=13312,--no-entry,--compress-relocations,--strip-all \
+	-Wl,--export=__heap_base,--export=sa,--export=e,--export=re,--export=es \
+	-Wl,--export=ee,--export=rre,--export=ree,--export=res,--export=ru,--export=us \
+	-Wl,--export=ue,--export=parseCJS \
+	-Iinclude-wasm src/lexer.c -o lib/lexer.wasm
+
+node build.js
+babeljs dist/lexer.mjs | terser -o dist/lexer.js

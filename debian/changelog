@@ -1,5 +1,45 @@
-template-repository (1.0-1) unstable; urgency=medium
+node-cjs-module-lexer (1.2.2+dfsg-5) unstable; urgency=medium
 
-  * Initial release
+  * Team upload
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+  [ Debian Janitor ]
+  * Apply multi-arch hints. + node-cjs-module-lexer: Add Multi-Arch: foreign
+
+  [ Yadd ]
+  * Restrict autopkgtest to architectures that support lld
+
+  [ Debian Janitor ]
+  * Set upstream metadata fields: Repository-Browse.
+
+ -- Jelmer Vernooĳ <jelmer@debian.org>  Fri, 02 Dec 2022 19:04:42 +0000
+
+node-cjs-module-lexer (1.2.2+dfsg-4) unstable; urgency=medium
+
+  * Team upload
+  * Fix jest broken version
+
+ -- Yadd <yadd@debian.org>  Thu, 29 Sep 2022 13:34:59 +0200
+
+node-cjs-module-lexer (1.2.2+dfsg-3) unstable; urgency=medium
+
+  [ Yadd ]
+  * Update d/clean
+
+  [ Jérémy Lal ]
+  * Breaks jest 28.1.3~ds+~cs70.48.29-1
+
+ -- Jérémy Lal <kapouer@melix.org>  Sat, 10 Sep 2022 18:02:55 +0200
+
+node-cjs-module-lexer (1.2.2+dfsg-2) unstable; urgency=medium
+
+  [ Yadd ]
+  * Trim trailing whitespace.
+  * Fix copyright
+
+ -- Jérémy Lal <kapouer@melix.org>  Thu, 08 Sep 2022 14:21:36 +0200
+
+node-cjs-module-lexer (1.2.2+dfsg-1) unstable; urgency=medium
+
+  * Initial release (Closes: #1019383)
+
+ -- Jérémy Lal <kapouer@melix.org>  Thu, 08 Sep 2022 12:44:44 +0200

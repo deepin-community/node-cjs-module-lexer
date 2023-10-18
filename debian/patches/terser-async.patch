@@ -1,0 +1,42 @@
+Description: async build
+ Since terser is async anyway, let's use async api
+Last-Update: 2022-09-08
+Author: Jérémy Lal <kapouer@melix.org>
+Forwarded: not-needed
+--- a/build.js
++++ b/build.js
+@@ -1,22 +1,25 @@
+-const fs = require('fs');
+-const terser = require('terser');
++const { readFile, mkdir, writeFile } = require('node:fs/promises');
++const { minify } = require('terser');
++
++(async function() {
+ 
+ const MINIFY = true;
+ 
+-try { fs.mkdirSync('./dist'); }
+-catch (e) {}
++await mkdir('./dist', { recursive: true });
+ 
+-const wasmBuffer = fs.readFileSync('./lib/lexer.wasm');
+-const jsSource = fs.readFileSync('./src/lexer.js').toString();
+-const pjson = JSON.parse(fs.readFileSync('./package.json').toString());
++const wasmBuffer = await readFile('./lib/lexer.wasm');
++const jsSource = (await readFile('./src/lexer.js')).toString();
++const pjson = JSON.parse((await readFile('./package.json')).toString());
+ 
+ const jsSourceProcessed = jsSource.replace('WASM_BINARY', wasmBuffer.toString('base64'));
+ 
+-const minified = MINIFY && terser.minify(jsSourceProcessed, {
++const minified = MINIFY && await minify(jsSourceProcessed, {
+   module: true,
+   output: {
+     preamble: `/* cjs-module-lexer ${pjson.version} */`
+   }
+ });
+ 
+-fs.writeFileSync('./dist/lexer.mjs', minified ? minified.code : jsSourceProcessed);
++await writeFile('./dist/lexer.mjs', minified ? minified.code : jsSourceProcessed);
++
++})();
