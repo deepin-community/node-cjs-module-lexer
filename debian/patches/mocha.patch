@@ -1,0 +1,27 @@
+Description: tdd means beforeEach is setup with latest mocha
+Last-Update: 2022-09-08
+Author: Jérémy Lal <kapouer@melix.org>
+Forwarded: not-needed
+
+--- a/test/_unit.js
++++ b/test/_unit.js
+@@ -14,7 +14,7 @@
+ }
+ 
+ suite('Lexer', () => {
+-  beforeEach(async () => await loadParser());
++  setup(async () => await loadParser());
+ 
+   test('esbuild hint style', () => {
+     var { exports, reexports } = parse(`
+--- a/test/integration.js
++++ b/test/integration.js
+@@ -26,7 +26,7 @@
+ 	});
+ 
+ suite('Samples', () => {
+-  beforeEach(async () => await loadParser());
++  setup(async () => await loadParser());
+ 
+   const selfSource = fs.readFileSync(process.cwd() + '/lexer.js').toString();
+   test('Self test', async () => {

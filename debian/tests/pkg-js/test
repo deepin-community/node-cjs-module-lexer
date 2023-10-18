@@ -1,0 +1,2 @@
+mocha -b -u tdd test/_unit.js
+WASM=1 mocha -b -u tdd test/_unit.js
